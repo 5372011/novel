@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小说网站</title>
+    <style>
+        body {
+            background-color: #f0f8ff; /* 淡蓝色背景 */
+            color: #333333; /* 深灰色文本 */
+            font-family: Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        header {
+            background-color: transparent; /* 透明背景 */
+            color: #333333;
+            text-align: left;
+            padding: 10px;
+            position: absolute;
+            top: -10px; /* 向上移动 */
+            left: 10px;
+            z-index: 2; /* 确保header在顶层 */
+            margin-bottom: 20px; 
+        }
+
+        h1 {
+            /* 白色背景 */
+            padding: 10px;
+            border-radius: 20px;
+            color: #333333;
+            margin-bottom: 30px; /* 增加标题与下方内容的间距 */
+        }
+
+        .scroll-container {
+            height: calc(100vh - 170px); /* 计算高度，减去header和footer高度 */
+            overflow: auto; /* 添加滚动条 */
+            position: fixed;
+            top: 70px; /* 距离顶部一定距离 */
+            bottom: 50px; /* 距离底部一定距离 */
+            left: 0;
+            right: 0;
+            padding: 10px;
+        }
+
+        section {
+            padding: 20px;
+            border-radius: 40px;
+            background-color: #ffffff; /* 白色背景 */
+            margin: 10px; /* 间距设置为10px */
+        }
+
+        footer {
+            background-color: #b0c4de; /* 淡蓝色背景 */
+            color: #333333;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+       
+        input[type="checkbox"] {
+            display: none; /* 隐藏复选框 */
+        }
+
+        .expandable-section {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 2s ease;
+        }
+
+        input[type="checkbox"]:checked + .expandable-section {
+            max-height: 500px; /* 展开时的最大高度 */
+        }
+        
+        .expand-btn {
+            cursor: pointer;
+            background-color: #ffc0cb; /* 淡粉色按钮背景颜色 */
+            color: #333333; /* 按钮文字颜色 */
+            padding: 10px 12px;
+            border-radius: 15px; /* 圆角 */
+            margin-top: 10px;
+            border: none; /* 去掉边框 */
+        }
+        
+        .expand-btn:focus { /* 聚焦时添加样式 */
+            outline: none;
+            box-shadow: 0 0 5px #ffc0cb; /* 添加阴影效果 */
+        }
+        
+        p {
+            word-wrap: break-word; /* 当单词太长时强制换行 */
+        }
+
+@media only screen and (max-width: 100px) {
+    body {
+        font-size: 14px; /* 在小于等于 600px 的屏幕上修改字体大小 */
+    }
+
+    .scroll-container {
+        height: calc(100vh - 120px); /* 在小屏幕上调整滚动容器高度 */
+    }
+
+    section {
+        padding: 10px;
+        border-radius: 20px;
+        margin: 5px; /* 调整段落与周围元素之间的间距 */
+    }
+
+    footer {
+        padding: 5px 0; /* 调整页脚内边距 */
+    }
+}
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>小说网站</h1>
+    </header>
+
+    <div class="scroll-container">
+        <section>
+    <h2>第一章：小说标题1</h2>
+    <input type="checkbox" id="chapter1-checkbox">
+    <div class="expandable-section">
+        <p>内容</p>
+    </div>
+    <button class="expand-btn" >点击展开/收起</button>
+        </section>
+
+      
+    </div>
+
+    <footer>
+        &copy; 2024 小说网站 版权所有
+    </footer>
+    
+    <script>
+    const expandBtns = document.querySelectorAll('.expand-btn');
+
+    expandBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const section = btn.parentNode.querySelector('.expandable-section');
+            section.style.maxHeight = section.style.maxHeight ? null : `${section.scrollHeight}px`;
+        });
+    });
+    
+</script>
+
+</body>
+</html>
